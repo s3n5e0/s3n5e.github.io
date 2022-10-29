@@ -1,0 +1,1 @@
+cmd /c for /f "delims=" %t in ('') do cls & echo %t

